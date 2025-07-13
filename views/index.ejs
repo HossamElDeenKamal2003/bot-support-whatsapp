@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Unspam Request</title>
+  <link rel="icon" href="/logo.jpeg" type="image/jpeg">
+
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f6fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .header img {
+    height: 50px;
+    border-radius: 8px;
+  }
+
+  .header h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #2f3640;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #353b48;
+  }
+
+  input[type="file"],
+  textarea,
+  button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #dcdde1;
+    font-size: 15px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  button {
+    background-color: #0984e3;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background-color: #74b9ff;
+  }
+
+  .message {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #00b894;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 20px;
+    font-size: 14px;
+    color: #636e72;
+    background: #f1f2f6;
+    border-top: 1px solid #dfe6e9;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 480px) {
+    .header {
+      flex-direction: column;
+    }
+
+    .header h2 {
+      font-size: 20px;
+      color: red; /* ✅ Will override original */
+    }
+
+    .header img {
+      height: 40px;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 20px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <img src="/logo.jpeg" alt="Logo" />
+      <h2>رفع ملف وكتابة الرسالة لتليجرام</h2>
+    </div>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <label for="file">اختر ملف Excel أو CSV:</label>
+      <input type="file" name="file" accept=".xlsx,.csv" required />
+
+      <label for="customMessage">نص الرسالة:</label>
+      <textarea name="customMessage" rows="10" placeholder="اكتب الرسالة التي سيتم إرسالها..." required>
+مرحباً فريق دعم تيليجرام،
+
+أرسل لكم هذا الطلب بخصوص الرقم التالي الذي يبدو أنه قد تم حظره أو تقييده على تيليجرام:
+
+{{PhoneNumber}}
+
+نعتقد أن هذا قد يكون تم عن طريق الخطأ ونرجو منكم مراجعة الحالة ورفع الحظر إن أمكن.
+
+شكراً جزيلاً على وقتكم ودعمكم.
+
+مع خالص التحية،  
+حسام كمال
+      </textarea>
+
+      <button type="submit">إرسال البريد</button>
+    </form>
+
+    <% if (message) { %>
+      <div class="message"><%= message %></div>
+    <% } %>
+  </div>
+
+  <footer>
+    &copy; 2025 حسام كمال — جميع الحقوق محفوظة
+  </footer>
+</body>
+</html>
